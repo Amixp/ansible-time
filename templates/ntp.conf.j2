@@ -1,0 +1,22 @@
+driftfile /var/lib/ntp/drift
+
+interface ignore wildcard
+interface listen 127.0.0.1
+interface listen ::1
+
+restrict 127.0.0.1 
+restrict -6 ::1
+
+server {{ time_ntp_server }}
+server 0.de.pool.ntp.org
+server 1.de.pool.ntp.org
+server 2.de.pool.ntp.org
+server 3.de.pool.ntp.org
+server 0.europe.pool.ntp.org
+server 1.europe.pool.ntp.org
+server 2.europe.pool.ntp.org
+server 3.europe.pool.ntp.org
+
+includefile /etc/ntp/crypto/pw
+keys /etc/ntp/keys
+

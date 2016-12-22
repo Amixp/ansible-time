@@ -1,0 +1,14 @@
+- name: Install ntp
+  yum: name=ntp state=present
+
+- name: Configure ntp file
+  template: src=ntp.conf.j2 dest=/etc/ntp.conf
+  notify: Restart ntpd
+
+- name: Start the ntpd service
+  service: name=ntpd state=started enabled=true
+
+- name: Set timezone
+  timezone:
+    name: "{{ time_timezone }}"
+  when: time_timezone is defined
