@@ -19,7 +19,9 @@ restrict ::1
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (http://www.pool.ntp.org/join.html).
 {% if time_ntp_server is defined %}
-server {{ time_ntp_server }} iburst
+{% for item in time_ntp_server %}
+server {{ item }} iburst
+{% endfor %}
 {% endif %}
 server 0.centos.pool.ntp.org iburst
 server 1.centos.pool.ntp.org iburst
